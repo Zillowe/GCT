@@ -1,0 +1,16 @@
+etc
+test
+tests
+build/compiled
+build/build
+build/archived
+build/build-all
+build/build-release
+build/archive
+build/publish
+
+
+# Added by GCT
+gct.yaml
+
+/.gct/

@@ -1,0 +1,24 @@
+name: "GCT"
+packages:
+  - name: "go"
+    check: "go version"
+
+commands:
+  - cmd: "build"
+    run: "./build/build.sh"
+  - cmd: "build-r"
+    run: "./build/build-release.sh"
+  - cmd: "build-all"
+    run: "./build/build-all.sh"
+  - cmd: "archive"
+    run: "./build/archive.sh"
+  - cmd: "publish"
+    run: "./build/publish.sh"
+
+environments:
+  - name: "Development"
+    cmd: "dev"
+    run: ["./build/build.sh"]
+  - name: "Production"
+    cmd: "prod"
+    run: ["./build/build-all.sh"]
