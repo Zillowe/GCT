@@ -44,4 +44,5 @@ func PrintUsage() {
 
 	fmt.Printf("%s\n", yellow("GLOBAL FLAGS"))
 	fmt.Printf("  %s, %s      Show GCT version information\n", green("-v"), green("--version"))
+	fmt.Printf("  %s         Generate the response again not from the cache\n", green("--no-cache"))
 }
