@@ -24,4 +24,6 @@ var ModelPresets = []ModelPreset{
 	{DisplayName: "DeepSeek R1 (via DeepSeek)", Provider: "DeepSeek", ModelName: "deepseek-reasoner"},
 	{DisplayName: "Grok 3 (via xAI)", Provider: "xAI", ModelName: "grok-3-latest"},
 	{DisplayName: "Grok 3 Mini (via xAI)", Provider: "xAI", ModelName: "grok-3-mini-latest"},
+	{DisplayName: "Gemma 3 27B (via Google AI Studio)", Provider: "Google AI Studio", ModelName: "gemma-3-27b"},
+	{DisplayName: "Gemini 1.5 Flash Lite (via Google AI Studio)", Provider: "Google AI Studio", ModelName: "gemini-1.5-flash-lite"},
 }

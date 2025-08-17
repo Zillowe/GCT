@@ -63,28 +63,13 @@ func (p *AzureProvider) Generate(ctx context.Context, prompt string) (string, er
 		},
 	}
 
-	reqBody, err := json.Marshal(payload)
-	if err != nil {
-		return "", fmt.Errorf("failed to marshal azure request: %w", err)
-	}
+	headers := http.Header{}
+	headers.Set("Content-Type", "application/json")
+	headers.Set("api-key", p.apiKey)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", p.baseURL, bytes.NewBuffer(reqBody))
-	if err != nil {
-		return "", fmt.Errorf("failed to create http request for azure: %w", err)
-	}
-
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("api-key", p.apiKey)
-
-	resp, err := p.client.Do(req)
+	respBody, statusCode, err := doAPIRequest(ctx, p.client, "POST", p.baseURL, headers, payload)
 	if err != nil {
 		return "", fmt.Errorf("failed to send request to azure: %w", err)
-	}
-	defer resp.Body.Close()
-
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read azure response body: %w", err)
 	}
 
 	var apiResp azureResponse
@@ -92,7 +77,7 @@ func (p *AzureProvider) Generate(ctx context.Context, prompt string) (string, er
 		return "", fmt.Errorf("failed to parse azure json response: %w", err)
 	}
 
-	if resp.StatusCode != http.StatusOK {
+	if statusCode != http.StatusOK {
 		if apiResp.Error != nil {
 			return "", fmt.Errorf("azure api error (type: %s): %s", apiResp.Error.Type, apiResp.Error.Message)
 		}

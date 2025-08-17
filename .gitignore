@@ -8,7 +8,7 @@ build/build-all
 build/build-release
 build/archive
 build/publish
-
+.env
 
 # Added by GCT
 gct.yaml

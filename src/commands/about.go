@@ -16,5 +16,5 @@ func AboutCommand() {
 	fmt.Printf("  GCT is a part of the Zillowe Development Suite (ZDS)\n")
 	fmt.Printf("\n")
 	fmt.Printf("  Created by Zillowe Foundation > Zusty\n")
-	fmt.Printf("  Hosted on %s\n", yellow("https://Codeberg.org/Zusty/GCT"))
+	fmt.Printf("  Hosted on %s\n", yellow("https://gitlab.com/Zillowe/Zillwen/Zusty/GCT"))
 }

@@ -22,7 +22,6 @@ func PrintUsage() {
 	fmt.Printf("    %s %s\n", faint("  └─"), green("model"))
 	fmt.Printf("  %-18s          Show GCT version information\n", green("version"))
 	fmt.Printf("  %-18s          Display details and information about GCT\n", green("about"))
-	fmt.Printf("  %-18s          Check for and apply updates to GCT itself\n", green("update"))
 	fmt.Printf("  %-18s          Show this help message\n\n", green("help"))
 
 	fmt.Printf("%s\n", yellow("MANUAL GIT COMMANDS"))

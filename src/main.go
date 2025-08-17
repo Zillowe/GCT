@@ -12,7 +12,7 @@ import (
 var (
 	VerBranch = "Prod."
 	VerStatus = "Release"
-	VerNumber = "2.6.0"
+	VerNumber = "3.0.0"
 	VerCommit = "dev"
 )
 
@@ -98,12 +98,6 @@ func main() {
 			return
 		}
 		commands.AboutCommand()
-	case "update":
-		if len(args) > 0 {
-			fmt.Println(color.YellowString("Usage: gct update (no arguments expected)"))
-			return
-		}
-		commands.UpdateCommand(VerBranch, VerStatus, VerNumber)
 	case "commit":
 		if len(args) > 0 {
 			fmt.Println(color.YellowString("Usage: gct commit (no arguments expected)"))

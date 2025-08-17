@@ -71,28 +71,13 @@ func (p *GoogleProvider) Generate(ctx context.Context, prompt string) (string, e
 		},
 	}
 
-	reqBody, err := json.Marshal(payload)
-	if err != nil {
-		return "", fmt.Errorf("failed to marshal google rest request: %w", err)
-	}
-
 	url := fmt.Sprintf("%s%s:generateContent?key=%s", p.baseURL, p.model, p.apiKey)
+	headers := http.Header{}
+	headers.Set("Content-Type", "application/json")
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bytes.NewBuffer(reqBody))
-	if err != nil {
-		return "", fmt.Errorf("failed to create http request: %w", err)
-	}
-	req.Header.Set("Content-Type", "application/json")
-
-	resp, err := p.client.Do(req)
+	respBody, statusCode, err := doAPIRequest(ctx, p.client, "POST", url, headers, payload)
 	if err != nil {
 		return "", fmt.Errorf("failed to send request to google ai: %w", err)
-	}
-	defer resp.Body.Close()
-
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %w", err)
 	}
 
 	var apiResp googleRESTResponse
@@ -100,11 +85,11 @@ func (p *GoogleProvider) Generate(ctx context.Context, prompt string) (string, e
 		return "", fmt.Errorf("failed to parse google json response: %w", err)
 	}
 
-	if resp.StatusCode != http.StatusOK {
+	if statusCode != http.StatusOK {
 		if apiResp.Error != nil {
 			return "", fmt.Errorf("google api error (%d - %s): %s", apiResp.Error.Code, apiResp.Error.Status, apiResp.Error.Message)
 		}
-		return "", fmt.Errorf("received non-200 status from google ai: %d", resp.StatusCode)
+		return "", fmt.Errorf("received non-200 status from google ai: %d", statusCode)
 	}
 
 	if len(apiResp.Candidates) == 0 || len(apiResp.Candidates[0].Content.Parts) == 0 {

@@ -68,29 +68,14 @@ func (p *AnthropicProvider) Generate(ctx context.Context, prompt string) (string
 		MaxTokens: 4096,
 	}
 
-	reqBody, err := json.Marshal(payload)
-	if err != nil {
-		return "", fmt.Errorf("failed to marshal anthropic request: %w", err)
-	}
+	headers := http.Header{}
+	headers.Set("Content-Type", "application/json")
+	headers.Set("x-api-key", p.apiKey)
+	headers.Set("anthropic-version", anthropicAPIVersion)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", p.baseURL+"/messages", bytes.NewBuffer(reqBody))
-	if err != nil {
-		return "", fmt.Errorf("failed to create http request: %w", err)
-	}
-
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("x-api-key", p.apiKey)
-	req.Header.Set("anthropic-version", anthropicAPIVersion)
-
-	resp, err := p.client.Do(req)
+	respBody, statusCode, err := doAPIRequest(ctx, p.client, "POST", p.baseURL+"/messages", headers, payload)
 	if err != nil {
 		return "", fmt.Errorf("failed to send request to anthropic: %w", err)
-	}
-	defer resp.Body.Close()
-
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %w", err)
 	}
 
 	var apiResp anthropicResponse
@@ -98,11 +83,11 @@ func (p *AnthropicProvider) Generate(ctx context.Context, prompt string) (string
 		return "", fmt.Errorf("failed to parse anthropic json response: %w", err)
 	}
 
-	if resp.StatusCode != http.StatusOK {
+	if statusCode != http.StatusOK {
 		if apiResp.Error != nil {
 			return "", fmt.Errorf("anthropic api error (type: %s): %s", apiResp.Error.Type, apiResp.Error.Message)
 		}
-		return "", fmt.Errorf("received non-200 status from anthropic: %d", resp.StatusCode)
+		return "", fmt.Errorf("received non-200 status from anthropic: %d", statusCode)
 	}
 
 	if len(apiResp.Content) == 0 || apiResp.Content[0].Text == "" {

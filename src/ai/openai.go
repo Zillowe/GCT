@@ -66,28 +66,13 @@ func (p *OpenAIProvider) Generate(ctx context.Context, prompt string) (string, e
 		},
 	}
 
-	reqBody, err := json.Marshal(payload)
-	if err != nil {
-		return "", fmt.Errorf("failed to marshal openai request: %w", err)
-	}
+	headers := http.Header{}
+	headers.Set("Content-Type", "application/json")
+	headers.Set("Authorization", "Bearer "+p.apiKey)
 
-	req, err := http.NewRequestWithContext(ctx, "POST", p.baseURL+"/chat/completions", bytes.NewBuffer(reqBody))
-	if err != nil {
-		return "", fmt.Errorf("failed to create http request: %w", err)
-	}
-
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+p.apiKey)
-
-	resp, err := p.client.Do(req)
+	respBody, statusCode, err := doAPIRequest(ctx, p.client, "POST", p.baseURL+"/chat/completions", headers, payload)
 	if err != nil {
 		return "", fmt.Errorf("failed to send request to openai: %w", err)
-	}
-	defer resp.Body.Close()
-
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %w", err)
 	}
 
 	var apiResp openAIResponse
@@ -95,11 +80,11 @@ func (p *OpenAIProvider) Generate(ctx context.Context, prompt string) (string, e
 		return "", fmt.Errorf("failed to parse openai json response: %w", err)
 	}
 
-	if resp.StatusCode != http.StatusOK {
+	if statusCode != http.StatusOK {
 		if apiResp.Error != nil {
 			return "", fmt.Errorf("openai api error (type: %s): %s", apiResp.Error.Type, apiResp.Error.Message)
 		}
-		return "", fmt.Errorf("received non-200 status from openai: %d", resp.StatusCode)
+		return "", fmt.Errorf("received non-200 status from openai: %d", statusCode)
 	}
 
 	if len(apiResp.Choices) == 0 || apiResp.Choices[0].Message.Content == "" {

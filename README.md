@@ -1,13 +1,9 @@
 <div align="center">
-    <img width="120" height="120" hspace="10" alt="ZDS Logo" src="https://codeberg.org/Zusty/ZDS/media/branch/main/img/zds.png"/>
+    <img width="120" height="120" hspace="10" alt="ZDS Logo" src="https://gitlab.com/Zillowe/Zillwen/Zusty/ZDS/-/raw/main/img/zds.png"/>
     <h1>GCT</h1>
     <strong>An intelligent, AI-powered Git assistant.</strong>
     <br/>
     <p>Go beyond simple commits. Let GCT explain, create, and conversationally refine your code changes with the power of AI.</p>
-<br/>
-<a href="https://codeberg.org/Zillowe/ZFPL">
-<img alt="ZFPL-1.0" src="https://codeberg.org/Zillowe/ZFPL/raw/branch/main/badges/1-0/dark.svg"/>
-</a>
 </div>
 
 <hr/>
@@ -58,12 +54,12 @@ GCT supports a wide range of providers:
 
 Choosing a model can be tough. Here are some recommended starting points for GCT's use case:
 
-| Recommendation       | Model ID                             | Best For...                                         |
-| :------------------- | :----------------------------------- | :-------------------------------------------------- |
-| **Best Overall**     | `gpt-4o` (OpenAI)                    | Top-tier reasoning, speed, and instruction following. |
-| **Best Balance**     | `claude-3-5-haiku-latest` (Anthropic)| Excellent performance at a great price point.         |
-| **Fastest & Best Value** | `gemini-2.0-flash-latest` (Google)   | High-speed, low-cost tasks like `ai log` & chat.    |
-| **Best Open Model**  | `meta-llama/llama-3-70b-instruct` (via OpenRouter) | State-of-the-art open-source performance.          |
+| Recommendation           | Model ID                                           | Best For...                                           |
+| :----------------------- | :------------------------------------------------- | :---------------------------------------------------- |
+| **Best Overall**         | `gpt-4o` (OpenAI)                                  | Top-tier reasoning, speed, and instruction following. |
+| **Best Balance**         | `claude-3-5-haiku-latest` (Anthropic)              | Excellent performance at a great price point.         |
+| **Fastest & Best Value** | `gemini-2.0-flash-latest` (Google)                 | High-speed, low-cost tasks like `ai log` & chat.      |
+| **Best Open Model**      | `meta-llama/llama-3-70b-instruct` (via OpenRouter) | State-of-the-art open-source performance.             |
 
 ## ✨ Commands
 
@@ -71,45 +67,31 @@ GCT is a command-line tool. Here are the available commands, grouped by category
 
 ### Core Commands
 
-| Command | Description |
-| :--- | :--- |
-| `gct init model`| Starts a wizard with recommended models for easy setup. |
-| `gct init` | Interactively creates a `gct.yaml` config file with manual input. |
-| `gct version` | Shows GCT version information. |
-| `gct help` | Shows the detailed help message. |
+| Command          | Description                                                       |
+| :--------------- | :---------------------------------------------------------------- |
+| `gct init model` | Starts a wizard with recommended models for easy setup.           |
+| `gct init`       | Interactively creates a `gct.yaml` config file with manual input. |
+| `gct version`    | Shows GCT version information.                                    |
+| `gct help`       | Shows the detailed help message.                                  |
 
 ### Manual Git Commands
 
-| Command | Description |
-| :--- | :--- |
-| `gct commit` | Creates a new git commit using an interactive TUI form. |
-| `gct commit edit`| Edits the previous commit's message using the same TUI. |
+| Command           | Description                                             |
+| :---------------- | :------------------------------------------------------ |
+| `gct commit`      | Creates a new git commit using an interactive TUI form. |
+| `gct commit edit` | Edits the previous commit's message using the same TUI. |
 
 ### AI Git Commands
 
-| Command | Description |
-| :--- | :--- |
+| Command                   | Description                                                                  |
+| :------------------------ | :--------------------------------------------------------------------------- |
 | `gct ai commit [context]` | Generates and conversationally refines a commit message from staged changes. |
-| `gct ai diff [args]` | Asks AI to explain a set of code changes in a readable format. |
-| `gct ai log [args]` | Generates a user-facing changelog entry from code changes. |
+| `gct ai diff [args]`      | Asks AI to explain a set of code changes in a readable format.               |
+| `gct ai log [args]`       | Generates a user-facing changelog entry from code changes.                   |
 
 ## 💾 Installation
 
-### Scripts
-
-To install the latest version of GCT, run the appropriate command for your system:
-
-```sh
-# Linux / macOS
-curl -fsSL https://zusty.codeberg.page/GCT/@main/app/install.sh | bash
-
-# Windows (in PowerShell)
-irm https://zusty.codeberg.page/GCT/@main/app/install.ps1 | iex
-```
-
-### Build from Source
-
-To build GCT from source you need to have [`go`](https://go.dev) installed.
+GCT must be built from source. To do so, you need to have [`go`](https://go.dev) installed.
 
 ```sh
 # For Linux/macOS
@@ -121,12 +103,8 @@ To build GCT from source you need to have [`go`](https://go.dev) installed.
 
 ## 📚 Documentation
 
-For more detailed guides, please refer to the **[[GCT Wiki]]**.
+For more detailed guides, please refer to the **[GCT Docs](https://zillowe.rf.gd/docs/zds/gct/)**.
 
 ## Footer
 
 GCT is developed by Zusty < Zillowe Foundation, part of the Zillowe Development Suite (ZDS).
-
-### License
-
-GCT is licensed under the [ZFPL-1.0](https://codeberg.org/Zillowe/ZFPL) (Zillowe Foundation Public License, Version 1.0).
