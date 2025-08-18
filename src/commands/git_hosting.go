@@ -35,6 +35,8 @@ func NewGitHostingProvider() (GitHostingProvider, error) {
 
 	if strings.Contains(remoteURL, "github.com") {
 		return NewGitHubProvider()
+	} else if strings.Contains(remoteURL, "gitlab.com") {
+		return NewGitLabProvider()
 	} else if strings.Contains(remoteURL, "codeberg.org") || strings.Contains(remoteURL, "gitea.com") || strings.Contains(remoteURL, "code.forgejo.org") {
 		return NewForgejoProvider()
 	}
