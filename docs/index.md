@@ -9,6 +9,7 @@ description: An intelligent, AI-powered Git assistant.
 
 - Conversational AI Commits: Generate a commit message and then "chat" with the AI to refine it until it's perfect.
 - Multi-Provider Support: Works with over 10 AI providers, including OpenAI, Anthropic, Google (AI Studio & Vertex AI), Mistral, Amazon Bedrock, and any OpenAI-compatible endpoint.
+- Git Hosting Integration: Explains pull/merge requests and proposes solutions for issues from GitHub, GitLab, and Forgejo.
 - AI-Generated Changelogs: Automatically create user-facing changelogs from any set of git changes (gct ai log).
 - AI-Powered Diff Analysis: Get a high-level explanation of any commit, branch, or staged changes (gct ai diff).
 - Guided Setup: An interactive wizard (gct init) makes setup for any provider simple and fast.
@@ -30,10 +31,18 @@ The `init` command creates a `gct.yaml` file that holds the configuration for al
 
 **Security Note:** This file contains your API key. The `gct init` command will automatically add `gct.yaml` to your `.gitignore` file to prevent accidentally committing secrets.
 
-### Supported Providers
+### Supported AI Providers
 
-GCT supports a wide range of providers:
+GCT supports a wide range of AI providers:
 `Google AI Studio`, `Google Vertex AI`, `OpenAI`, `OpenAI Compatible`, `Azure OpenAI`, `Anthropic`, `OpenRouter`, `DeepSeek`, `Mistral`, `Alibaba`, `Hugging Face`, `Amazon Bedrock`, and `xAI`.
+
+### Supported Git Hosting Providers
+
+The `ai pr` and `ai issue` commands integrate with the following platforms (via their respective CLIs):
+
+- **GitHub** (via `gh`)
+- **GitLab** (via `glab`)
+- **Forgejo** and other Gitea forks (via `fj`)
 
 ### Configuration Fields
 
@@ -85,6 +94,8 @@ GCT is a command-line tool. Here are the available commands, grouped by category
 | `gct ai commit [context]` | Generates and conversationally refines a commit message from staged changes. |
 | `gct ai diff [args]`      | Asks AI to explain a set of code changes in a readable format.               |
 | `gct ai log [args]`       | Generates a user-facing changelog entry from code changes.                   |
+| `gct ai pr <number>`      | Summarizes a pull/merge request from GitHub, GitLab, or Forgejo.             |
+| `gct ai issue <number>`   | Proposes a technical solution for an issue from GitHub, GitLab, or Forgejo.  |
 
 ## Installation
 
@@ -192,6 +203,16 @@ GCT's commands are divided into three main categories:
     - `gct ai log` (Creates a changelog for unstaged changes)
     - `gct ai log --staged` (Creates a changelog for staged changes)
 
+- **`gct ai pr <number>`**
+  - Summarizes a pull request or merge request from a supported git hosting provider (GitHub, GitLab, Forgejo). It provides a high-level overview of the changes, the purpose, and the solution.
+  - **Usage:**
+    - `gct ai pr 123`
+
+- **`gct ai issue <number>`**
+  - Proposes a technical implementation plan for an issue from a supported git hosting provider. It outlines the "why", the "how", and the "solution".
+  - **Usage:**
+    - `gct ai issue 456`
+
 ---
 
 ### Global Flags
@@ -213,7 +234,7 @@ Frequently Asked Questions
   <Accordion title="What's the difference between 'gct init' and 'gct init model'?">
     Both commands create your `gct.yaml` configuration file, but they offer different experiences:
 
-    - **`gct init model` (Recommended):** This is the easiest way to start. It presents a curated list of popular, high-performance models. You just pick one from the list, and GCT configures the provider and model name for you.
+    - **`gct init model` (Recommended):** This is the easiest way to start. It presents a curated list of popular, high-performance models. You just pick one from the list, and GCT will configure the provider and model name for you.
 
     - **`gct init` (Manual):** This gives you full control. It prompts you to manually enter the provider name, model name, and any other provider-specific details. You should use this when you want to use a model not in the model list or need to configure a complex provider from scratch.
 
