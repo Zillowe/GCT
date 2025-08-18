@@ -1,11 +1,9 @@
 package ai
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"time"
 )
@@ -47,7 +45,7 @@ type googleRESTResponse struct {
 
 func NewGoogleProvider(apiKey, modelName string) (*GoogleProvider, error) {
 	if apiKey == "" {
-		return nil, fmt.Errorf("Google AI Studio API key is required")
+		return nil, fmt.Errorf("google AI Studio API key is required")
 	}
 
 	return &GoogleProvider{

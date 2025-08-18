@@ -91,7 +91,7 @@ func AILogCommand() {
 		return
 	}
 
-	guidelines, err := readGuidelines(cfg.Changelogs.Paths)
+	guidelines, _ := readGuidelines(cfg.Changelogs.Paths)
 
 	var prompt string
 	if guidelines != "" {

@@ -23,14 +23,6 @@ var statusOrder = map[string]int{
 	"Release":      7,
 }
 
-func parseVersion(branch, status, number string) Version {
-	return Version{
-		Branch: branch,
-		Status: status,
-		Number: number,
-	}
-}
-
 func (v Version) Compare(other Version) int {
 	currentRank, okCurrent := statusOrder[v.Status]
 	otherRank, okOther := statusOrder[other.Status]

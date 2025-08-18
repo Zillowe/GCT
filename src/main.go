@@ -69,10 +69,10 @@ func main() {
 	command := os.Args[1]
 	args := os.Args[2:]
 	args2 := os.Args
-	for i, arg := range args2 {
+	for _, arg := range args2 {
 		if arg == "--no-cache" {
 			commands.NoCache = true
-			args2 = append(args2[:i], args2[i+1:]...)
+
 			break
 		}
 	}

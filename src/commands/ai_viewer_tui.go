@@ -76,7 +76,7 @@ func (m AITextViewerModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "c":
 			if !m.showingCopied {
 				m.showingCopied = true
-				clipboard.WriteAll(m.rawContent)
+				_ = clipboard.WriteAll(m.rawContent)
 				cmds = append(cmds, tea.Tick(time.Second*1, func(t time.Time) tea.Msg {
 					return copiedMessage{}
 				}))

@@ -1,11 +1,9 @@
 package ai
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"time"
 )
@@ -46,7 +44,7 @@ type anthropicResponse struct {
 
 func NewAnthropicProvider(apiKey, modelName string) (*AnthropicProvider, error) {
 	if apiKey == "" {
-		return nil, fmt.Errorf("Anthropic API key is required")
+		return nil, fmt.Errorf("anthropic API key is required")
 	}
 
 	return &AnthropicProvider{

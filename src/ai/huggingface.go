@@ -1,11 +1,9 @@
 package ai
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"strings"
 	"time"
@@ -30,7 +28,7 @@ type huggingFaceResponse []struct {
 
 func NewHuggingFaceProvider(apiKey, modelName string) (*HuggingFaceProvider, error) {
 	if apiKey == "" {
-		return nil, fmt.Errorf("Hugging Face API key is required")
+		return nil, fmt.Errorf("hugging Face API key is required")
 	}
 	return &HuggingFaceProvider{
 		client: &http.Client{

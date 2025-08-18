@@ -31,7 +31,9 @@ func doAPIRequest(ctx context.Context, client *http.Client, method, url string, 
 	if err != nil {
 		return nil, 0, fmt.Errorf("failed to send request: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {

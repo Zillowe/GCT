@@ -70,11 +70,8 @@ func EditCommitCommand() {
 		return
 	}
 
-	_, cSubject, body := parseCommitMessage(string(output))
-	cType, cSubject, _ := parseCommitMessage(cSubject)
-
 	fullMessage := strings.Replace(string(output), delimiter, "\n", 1)
-	cType, cSubject, body = parseCommitMessage(fullMessage)
+	cType, cSubject, body := parseCommitMessage(fullMessage)
 
 	fmt.Println(color.CyanString("✍️  Editing last commit message..."))
 	tuiModel := NewCommitTUIModel(cType, cSubject, body)

@@ -8,3 +8,7 @@ commands:
     run: "./build/build.sh"
   - cmd: "build-r"
     run: "./build/build-release.sh"
+  - cmd: "fmt"
+    run: "go fmt ./..."
+  - cmd: "lint"
+    run: "golangci-lint run"

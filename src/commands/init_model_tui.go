@@ -9,9 +9,7 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-const (
-	stateSelectModelPreset = iota
-)
+const ()
 
 type InitModelTUIModel struct {
 	InitTUIModel
