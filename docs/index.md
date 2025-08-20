@@ -231,13 +231,16 @@ Frequently Asked Questions
 </Accordions>
 <br />
 <Accordions type="single">
+  <Accordion title="How do I use GCT for free?">
+    You can use GCT for free by setting the provider as OpenRouter and use a free model from OpenRouter, or to use Google AI Studio and use a model like Gemini 2.5 Flash
+  </Accordion>
+</Accordions>
+<br />
+<Accordions type="single">
   <Accordion title="What's the difference between 'gct init' and 'gct init model'?">
     Both commands create your `gct.yaml` configuration file, but they offer different experiences:
-
     - **`gct init model` (Recommended):** This is the easiest way to start. It presents a curated list of popular, high-performance models. You just pick one from the list, and GCT will configure the provider and model name for you.
-
     - **`gct init` (Manual):** This gives you full control. It prompts you to manually enter the provider name, model name, and any other provider-specific details. You should use this when you want to use a model not in the model list or need to configure a complex provider from scratch.
-
   </Accordion>
   </Accordions>
 <br />
@@ -245,11 +248,8 @@ Frequently Asked Questions
 <Accordions type="single">
   <Accordion title="Do I need to use the AI features?">
     Not at all! GCT is designed to be useful for everyone:
-
-    1.  **As a Manual Git Helper:** Commands like `gct commit` and `gct commit edit` provide an interactive form (TUI) to help you write perfectly formatted commit messages without any AI.
-
-    2.  **As an AI Assistant:** Commands like `gct ai commit`, `gct ai diff`, and `gct ai log` use AI to automate tasks. These features are entirely optional and require a `gct.yaml` config file.
-
+    1. **As a Manual Git Helper:** Commands like `gct commit` and `gct commit edit` provide an interactive form (TUI) to help you write perfectly formatted commit messages without any AI.
+    2. **As an AI Assistant:** Commands like `gct ai commit`, `gct ai diff`, and `gct ai log` use AI to automate tasks. These features are entirely optional and require a `gct.yaml` config file.
   </Accordion>
 </Accordions>
 <br />
@@ -262,38 +262,28 @@ Frequently Asked Questions
 <Accordions type="single">
   <Accordion title="Which AI providers are supported?">
     GCT supports a vast and growing ecosystem of AI services. You can connect to almost any major platform:
-
     - **Major Platforms:** OpenAI, Anthropic (Claude), Google AI Studio (Gemini), Google Vertex AI, Azure OpenAI, Amazon Bedrock.
-
     - **Open Model Providers:** Mistral, DeepSeek, Alibaba (Qwen), xAI (Grok).
-
     - **Aggregators & Endpoints:** OpenRouter, Hugging Face, and any other "OpenAI Compatible" endpoint.
-
   </Accordion>
 </Accordions>
 <br />
 <Accordions type="single">
   <Accordion title="How does the AI know how to format my commits and changelogs?">
     The `gct.yaml` file has two sections for providing style guides: `commits` and `changelogs`. You can list paths to local Markdown (`.md`) or text (`.txt`) files in each section.
-
     - When you run `gct ai commit`, it uses the `commits.guides`.
     - When you run `gct ai log`, it uses the `changelogs.guides`.
       This ensures the AI's output is always tailored to your specific project conventions.
     </Accordion>
-
 </Accordions>
 <br />
 <Accordions type="single">
   <Accordion title="How does authentication work for providers like AWS Bedrock or Google
 Vertex AI?">
     Instead of a single API key, these enterprise platforms use more complex authentication, which the `gct init` wizard will guide you through:
-
     - For **Amazon Bedrock**, it will prompt for your AWS Access Key ID, Secret AccessKey, and AWS Region.
-
     - For **Google Vertex AI**, it will prompt for your GCP Project ID and GCP Region. It then uses your machine's existing Google Cloud authentication (usually configured by running `gcloud auth application-default login`).
-
     - For all other providers, it will ask for a standard API key.
-
   </Accordion>
 </Accordions>
 <br />
