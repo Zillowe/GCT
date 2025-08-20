@@ -54,12 +54,12 @@ GCT supports a wide range of providers:
 
 Choosing a model can be tough. Here are some recommended starting points for GCT's use case:
 
-| Recommendation           | Model ID                                           | Best For...                                           |
-| :----------------------- | :------------------------------------------------- | :---------------------------------------------------- |
-| **Best Overall**         | `gpt-4o` (OpenAI)                                  | Top-tier reasoning, speed, and instruction following. |
-| **Best Balance**         | `claude-3-5-haiku-latest` (Anthropic)              | Excellent performance at a great price point.         |
-| **Fastest & Best Value** | `gemini-2.0-flash-latest` (Google)                 | High-speed, low-cost tasks like `ai log` & chat.      |
-| **Best Open Model**      | `meta-llama/llama-3-70b-instruct` (via OpenRouter) | State-of-the-art open-source performance.             |
+| Recommendation           | Model ID                               | Best For...                                           |
+| :----------------------- | :------------------------------------- | :---------------------------------------------------- |
+| **Best Overall**         | `gpt-5-mini` (OpenAI)                  | Top-tier reasoning, speed, and instruction following. |
+| **Best Balance**         | `claude-3-5-haiku-latest` (Anthropic)  | Excellent performance at a great price point.         |
+| **Fastest & Best Value** | `gemini-2.5-flash` (Google)            | High-speed, low-cost tasks like `ai log` & chat.      |
+| **Best Open Model**      | `openai/gpt-oss-120b` (via OpenRouter) | State-of-the-art open-source performance.             |
 
 ## ✨ Commands
 

@@ -60,12 +60,12 @@ The `ai pr` and `ai issue` commands integrate with the following platforms (via 
 
 Choosing a model can be tough. Here are some recommended starting points for GCT's use case:
 
-| Recommendation           | Model ID                                           | Best For...                                           |
-| :----------------------- | :------------------------------------------------- | :---------------------------------------------------- |
-| **Best Overall**         | `gpt-4o` (OpenAI)                                  | Top-tier reasoning, speed, and instruction following. |
-| **Best Balance**         | `claude-3-5-haiku-latest` (Anthropic)              | Excellent performance at a great price point.         |
-| **Fastest & Best Value** | `gemini-2.0-flash-latest` (Google)                 | High-speed, low-cost tasks like `ai log` & chat.      |
-| **Best Open Model**      | `meta-llama/llama-3-70b-instruct` (via OpenRouter) | State-of-the-art open-source performance.             |
+| Recommendation           | Model ID                               | Best For...                                           |
+| :----------------------- | :------------------------------------- | :---------------------------------------------------- |
+| **Best Overall**         | `gpt-5-mini` (OpenAI)                  | Top-tier reasoning, speed, and instruction following. |
+| **Best Balance**         | `claude-3-5-haiku-latest` (Anthropic)  | Excellent performance at a great price point.         |
+| **Fastest & Best Value** | `gemini-2.5-flash` (Google)            | High-speed, low-cost tasks like `ai log` & chat.      |
+| **Best Open Model**      | `openai/gpt-oss-120b` (via OpenRouter) | State-of-the-art open-source performance.             |
 
 ## Commands
 
@@ -133,7 +133,7 @@ This command launches a fully manual, step-by-step setup wizard. It will ask you
 gct init
 ```
 
-Both commands will create a `gct.yaml` file in your project's root directory. For more details on the configuration options, please see the **[[`gct.yaml` Configuration Reference]]** page.
+Both commands will create a `gct.yaml` file in your project's root directory. For more details on the configuration options, please see the **[`gct.yaml` Configuration Reference](/docs/zds/gct/project-config/)** page.
 
 ---
 
