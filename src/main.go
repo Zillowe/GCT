@@ -106,7 +106,7 @@ func main() {
 		commands.CommitCommand()
 	case "ai":
 		fmt.Printf("%s 'ai' command requires a subcommand.\n", color.RedString("Error:"))
-		fmt.Println("Usage: gct ai [commit|diff]")
+		fmt.Println("Usage: gct ai [commit|diff|log|issue|pr]")
 		return
 	default:
 		commands.NotFoundCommand()
