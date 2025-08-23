@@ -31,7 +31,9 @@ func executeGitCommit(subjectLine, body string, isAmend bool) error {
 	red := color.New(color.FgRed).SprintFunc()
 	cyan := color.New(color.FgCyan).SprintFunc()
 
-	escapedSubject := strings.ReplaceAll(subjectLine, "\"", "\\\"")
+	escapedSubject := strings.ReplaceAll(subjectLine, "`", "\`")
+	escapedSubject = strings.ReplaceAll(escapedSubject, "\"", "\\\"")
+
 	var cmdToExecute string
 
 	baseCmd := "git commit"
@@ -40,7 +42,8 @@ func executeGitCommit(subjectLine, body string, isAmend bool) error {
 	}
 
 	if strings.TrimSpace(body) != "" {
-		escapedBody := strings.ReplaceAll(body, "\"", "\\\"")
+		escapedBody := strings.ReplaceAll(body, "`", "\`")
+		escapedBody = strings.ReplaceAll(escapedBody, "\"", "\\\"")
 		cmdToExecute = fmt.Sprintf("%s -m \"%s\" -m \"%s\"", baseCmd, escapedSubject, escapedBody)
 	} else {
 		cmdToExecute = fmt.Sprintf("%s -m \"%s\"", baseCmd, escapedSubject)
@@ -49,8 +52,8 @@ func executeGitCommit(subjectLine, body string, isAmend bool) error {
 	fmt.Printf("\n%s Running git command...\n", cyan("ℹ"))
 	err := executeCommand(cmdToExecute)
 	if err != nil {
-		fmt.Printf("%s Failed to commit: %v\n", red("✗"), err)
-		fmt.Printf("%s Command attempted: %s\n", red("↪"), cmdToExecute)
+		fmt.Printf("%s Failed to commit: %%v\n", red("✗"), err)
+		fmt.Printf("%s Command attempted: %%s\n", red("↪"), cmdToExecute)
 		return err
 	}
 	return nil
@@ -66,7 +69,7 @@ func EditCommitCommand() {
 	cmd := exec.Command("git", "log", "-1", "--pretty=format:%s"+delimiter+"%b")
 	output, err := cmd.Output()
 	if err != nil {
-		fmt.Printf("%s Could not get last commit: %v\n", color.RedString("✗"), err)
+		fmt.Printf("%s Could not get last commit: %%v\n", color.RedString("✗"), err)
 		return
 	}
 
@@ -82,7 +85,7 @@ func runCommitTUI(tuiModel CommitTUIModel, isAmend bool) {
 	p := tea.NewProgram(tuiModel, tea.WithAltScreen())
 	finalModel, err := p.Run()
 	if err != nil {
-		fmt.Printf("Error running TUI: %v\n", err)
+		fmt.Printf("Error running TUI: %%v\n", err)
 		return
 	}
 
