@@ -31,7 +31,7 @@ func executeGitCommit(subjectLine, body string, isAmend bool) error {
 	red := color.New(color.FgRed).SprintFunc()
 	cyan := color.New(color.FgCyan).SprintFunc()
 
-	escapedSubject := strings.ReplaceAll(subjectLine, "`", "\`")
+	escapedSubject := strings.ReplaceAll(subjectLine, "`", "\\`")
 	escapedSubject = strings.ReplaceAll(escapedSubject, "\"", "\\\"")
 
 	var cmdToExecute string
@@ -42,7 +42,7 @@ func executeGitCommit(subjectLine, body string, isAmend bool) error {
 	}
 
 	if strings.TrimSpace(body) != "" {
-		escapedBody := strings.ReplaceAll(body, "`", "\`")
+		escapedBody := strings.ReplaceAll(body, "`", "\\`")
 		escapedBody = strings.ReplaceAll(escapedBody, "\"", "\\\"")
 		cmdToExecute = fmt.Sprintf("%s -m \"%s\" -m \"%s\"", baseCmd, escapedSubject, escapedBody)
 	} else {
