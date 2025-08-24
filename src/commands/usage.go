@@ -22,6 +22,7 @@ func PrintUsage() {
 	fmt.Printf("    %s %s\n", faint("  └─"), green("model"))
 	fmt.Printf("  %-18s          Show GCT version information\n", green("version"))
 	fmt.Printf("  %-18s          Display details and information about GCT\n", green("about"))
+	fmt.Printf("  %-18s          Create a CI workflow for automated changelogs\n", green("setup <github|gitlab>"))
 	fmt.Printf("  %-18s          Show this help message\n\n", green("help"))
 
 	fmt.Printf("%s\n", yellow("MANUAL GIT COMMANDS"))
@@ -35,10 +36,10 @@ func PrintUsage() {
 	fmt.Printf("    %s %s\n", faint("  └─"), green("--staged"))
 	fmt.Printf("    %s %s\n", faint("  └─"), green("<commit|branch>"))
 	fmt.Printf("  %-18s      Generate a changelog entry from code changes\n", green("ai log [-c] [args]"))
-		fmt.Printf("    %s %s\n", faint("└─"), "For unstaged changes")
-		fmt.Printf("    %s %s\n", faint("  └─"), green("--staged"))
-		fmt.Printf("    %s %s\n", faint("  └─"), green("<commit|branch>"))
-		fmt.Printf("    %s %s\n", faint("  └─"), green("<start_tag> <end_tag>"))
+	fmt.Printf("    %s %s\n", faint("└─"), "For unstaged changes")
+	fmt.Printf("    %s %s\n", faint("  └─"), green("--staged"))
+	fmt.Printf("    %s %s\n", faint("  └─"), green("<commit|branch>"))
+	fmt.Printf("    %s %s\n", faint("  └─"), green("<start_tag> <end_tag>"))
 	fmt.Printf("  %-18s     Summarize a pull request\n", green("ai pr <number>"))
 	fmt.Printf("  %-18s  Propose a solution for an issue\n\n", green("ai issue <number>"))
 

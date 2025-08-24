@@ -66,6 +66,11 @@ func main() {
 		return
 	}
 
+	if len(os.Args) >= 2 && os.Args[1] == "setup" {
+		commands.SetupCommand()
+		return
+	}
+
 	command := os.Args[1]
 	args := os.Args[2:]
 	args2 := os.Args
