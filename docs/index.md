@@ -13,6 +13,7 @@ description: An intelligent, AI-powered Git assistant.
 - AI-Generated Changelogs: Automatically create user-facing changelogs from any set of git changes (gct ai log).
 - AI-Powered Diff Analysis: Get a high-level explanation of any commit, branch, or staged changes (gct ai diff).
 - Guided Setup: An interactive wizard (gct init) makes setup for any provider simple and fast.
+- Automated Changelog Workflows: Generate and commit changelogs automatically on new tags with `gct setup`.
 - Custom Guidelines: Enforce project-specific styles for commits and changelogs by providing your own guide files.
 
 ## Getting Started
@@ -73,12 +74,13 @@ GCT is a command-line tool. Here are the available commands, grouped by category
 
 ### Core Commands
 
-| Command          | Description                                                       |
-| :--------------- | :---------------------------------------------------------------- |
-| `gct init model` | Starts a wizard with recommended models for easy setup.           |
-| `gct init`       | Interactively creates a `gct.yaml` config file with manual input. |
-| `gct version`    | Shows GCT version information.                                    |
-| `gct help`       | Shows the detailed help message.                                  |
+| Command                | Description                                                            |
+| :--------------------- | :--------------------------------------------------------------------- |
+| `gct init model`       | Starts a wizard with recommended models for easy setup.                |
+| `gct init`             | Interactively creates a `gct.yaml` config file with manual input.      |
+| `gct setup <provider>` | Creates a CI workflow (`github` or `gitlab`) for automated changelogs. |
+| `gct version`          | Shows GCT version information.                                         |
+| `gct help`             | Shows the detailed help message.                                       |
 
 ### Manual Git Commands
 
@@ -153,6 +155,11 @@ GCT's commands are divided into three main categories:
   - Starts a guided setup wizard with a list of recommended models.
 - **`gct init`**
   - Starts a fully manual setup wizard to create or overwrite the `gct.yaml` file.
+- **`gct setup <github|gitlab>`**
+  - Generates a CI/CD workflow file to automate changelog generation. When you push a new version tag (e.g. `v1.2.3`), the workflow will run, generate a changelog for the new version, and commit it to a `Changelogs.md` file in your repository.
+  - **Usage:**
+    - `gct setup github` (Creates `.github/workflows/changelog.yml`)
+    - `gct setup gitlab` (Creates `.gitlab-ci.yml`)
 - **`gct version`**
   - Shows the currently installed GCT version and build details.
 - **`gct about`**
@@ -202,6 +209,12 @@ GCT's commands are divided into three main categories:
   - **Usage Examples:**
     - `gct ai log` (Creates a changelog for unstaged changes)
     - `gct ai log --staged` (Creates a changelog for staged changes)
+    - `gct ai log <commit-hash>` (Creates a changelog for a specific commit)
+    - `gct ai log <branch-name>` (Creates a changelog for changes on a branch)
+    - `gct ai log v1.0.0 v1.1.0` (Creates a changelog for changes between two tags)
+  - **Non-Interactive Output:**
+    - For use in CI/CD pipelines or scripts, add the `-c` flag to print the raw markdown output directly to the console without the interactive viewer.
+    - `gct ai log -c v1.0.0 v1.1.0`
 
 - **`gct ai pr <number>`**
   - Summarizes a pull request or merge request from a supported git hosting provider (GitHub, GitLab, Forgejo). It provides a high-level overview of the changes, the purpose, and the solution.
