@@ -10,7 +10,7 @@ import (
 
 const (
 	openRouterAPIBaseURL = "https://openrouter.ai/api/v1"
-	gctAppName           = "https://zillowe.rf.gd/docs/zds/gct/"
+	gctAppName           = "https://zillowe.qzz.io/docs/zds/gct"
 )
 
 type OpenRouterProvider struct {

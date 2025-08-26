@@ -103,7 +103,7 @@ GCT must be built from source. To do so, you need to have [`go`](https://go.dev)
 
 ## 📚 Documentation
 
-For more detailed guides, please refer to the **[GCT Docs](https://zillowe.rf.gd/docs/zds/gct/)**.
+For more detailed guides, please refer to the **[GCT Docs](https://zillowe.qzz.io/docs/zds/gct)**.
 
 ## Footer
 

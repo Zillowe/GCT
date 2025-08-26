@@ -3,7 +3,7 @@ name: gct
 repo: core/zillowe
 version: 3.0.0
 description: An intelligent, AI-powered Git assistant.
-website: https://zillowe.rf.gd/docs/zds/gct/
+website: https://zillowe.qzz.io/docs/zds/gct
 git: https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi.git
 maintainer:
   name: "ZilloweZ"
@@ -12,8 +12,8 @@ maintainer:
   key: "E64EAD446DEE0781E4E294E25EE37FA1FC3B442D"
 author:
   name: "Zillowe Foundation"
-  website: "https://zillowe.rf.gd"
-  email: "contact@zillowe.rf.gd"
+  website: "https://zillowe.qzz.io"
+  email: "contact@zillowe.qzz.io"
 license: Apache-2.0
 bins: ["gct"]
 conflicts: ["gct"]
