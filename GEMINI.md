@@ -31,5 +31,5 @@ Maintaining up-to-date and consistent documentation is crucial for the GCT proje
 ### Formatting and Style
 
 - **Framework:** The documentation uses [FumaDocs](https://fumadocs.dev). Please follow its conventions.
-- **Internal Linking:** When linking to other pages within the GCT documentation, use the following absolute path format: `/docs/zds/gct/{path-to-page-without-md-extension}/`.
-  - Example: A link to `docs/project-config.md` should be written as `[Project Config](/docs/zds/gct/project-config/)`.
+- **Internal Linking:** When linking to other pages within the GCT documentation, use the following absolute path format: `/docs/zds/gct/{path-to-page-without-md-extension}`.
+  - Example: A link to `docs/project-config.md` should be written as `[Project Config](/docs/zds/gct/project-config)`.

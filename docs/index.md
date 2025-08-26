@@ -135,7 +135,7 @@ This command launches a fully manual, step-by-step setup wizard. It will ask you
 gct init
 ```
 
-Both commands will create a `gct.yaml` file in your project's root directory. For more details on the configuration options, please see the **[`gct.yaml` Configuration Reference](/docs/zds/gct/project-config/)** page.
+Both commands will create a `gct.yaml` file in your project's root directory. For more details on the configuration options, please see the **[`gct.yaml` Configuration Reference](/docs/zds/gct/project-config)** page.
 
 ---
 
