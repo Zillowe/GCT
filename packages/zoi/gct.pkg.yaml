@@ -1,15 +1,14 @@
 # yaml-language-server: $schema=https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi/-/raw/main/app/pkg.schema.json
 name: gct
-repo: core/zillowe
-version: 3.0.0
+repo: zillowe
+version: 1.0.0
 description: An intelligent, AI-powered Git assistant.
 website: https://zillowe.qzz.io/docs/zds/gct
-git: https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi.git
+git: https://gitlab.com/Zillowe/Zillwen/Zusty/GCT.git
 maintainer:
   name: "ZilloweZ"
   website: "https://zillowez.rf.gd"
   email: "zillowez@gmail.com"
-  key: "E64EAD446DEE0781E4E294E25EE37FA1FC3B442D"
 author:
   name: "Zillowe Foundation"
   website: "https://zillowe.qzz.io"
