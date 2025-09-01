@@ -27,11 +27,13 @@ gct init model
 
 For a fully manual setup where you enter the provider and model name yourself, run `gct init`.
 
-## ⚙️ Configuration (`gct.yaml`)
+## ⚙️ Configuration
 
-The `init` command creates a `gct.yaml` file that holds the configuration for all AI commands.
+GCT is highly flexible. You can configure it using a local `gct.yaml` file, a global config file (e.g. `~/.config/gct/config.yaml`), or with environment variables. This allows you to set project-specific guidelines while keeping your API keys global or managed by your shell.
 
-**Security Note:** This file contains your API key. The `gct init` command will automatically add `gct.yaml` to your `.gitignore` file to prevent accidentally committing secrets.
+For a detailed guide on the configuration hierarchy and all available options, please see the [Configuration Reference](https://zillowe.qzz.io/docs/zds/gct/project-config).
+
+**Security Note:** When using file-based configuration, your API key is stored in plain text. The `gct init` command will automatically add `gct.yaml` to your `.gitignore` file to prevent accidentally committing secrets.
 
 ### Supported Providers
 

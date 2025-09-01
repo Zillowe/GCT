@@ -28,7 +28,7 @@ For a fully manual setup where you enter the provider and model name yourself, r
 
 ## Configuration
 
-The `init` command creates a `gct.yaml` file that holds the configuration for all AI commands.
+GCT can be configured via a local `gct.yaml` file, a global config file, or environment variables. The `init` command will help you create the local `gct.yaml` file, which holds the primary configuration for all AI commands.
 
 **Security Note:** This file contains your API key. The `gct init` command will automatically add `gct.yaml` to your `.gitignore` file to prevent accidentally committing secrets.
 

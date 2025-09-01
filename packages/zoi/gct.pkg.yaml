@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://gitlab.com/Zillowe/Zillwen/Zusty/Zoi/-/raw/main/app/pkg.schema.json
 name: gct
 repo: zillowe
-version: 1.0.0
+version: 1.1.0
 description: An intelligent, AI-powered Git assistant.
 website: https://zillowe.qzz.io/docs/zds/gct
 git: https://gitlab.com/Zillowe/Zillwen/Zusty/GCT.git
