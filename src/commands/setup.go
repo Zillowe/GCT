@@ -21,6 +21,21 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # Needed to commit back to the repo
+
+    # IMPORTANT: Set these environment variables in your repository's secrets.
+    # Settings > Secrets and variables > Actions > New repository secret
+    #
+    # - GCT_PROVIDER: The AI provider to use (e.g. OpenAI, Google AI Studio).
+    # - GCT_MODEL: The specific model name (e.g. gpt-4o, gemini-1.5-flash).
+    # - GCT_API_KEY: Your secret API key for the provider.
+    #
+    # You may also need to set provider-specific variables like GCT_AWS_REGION,
+    # GCT_GCP_PROJECT_ID, etc., depending on your chosen provider.
+    env:
+      GCT_PROVIDER: ${{ secrets.GCT_PROVIDER }}
+      GCT_MODEL: ${{ secrets.GCT_MODEL }}
+      GCT_API_KEY: ${{ secrets.GCT_API_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -43,7 +58,6 @@ jobs:
           CURRENT_TAG=${{ github.ref_name }}
           echo "Current tag: $CURRENT_TAG"
 
-          # Get the previous tag by sorting versions
           PREVIOUS_TAG=$(git tag --sort=-v:refname | sed -n '2p')
           if [ -z "$PREVIOUS_TAG" ]; then
             echo "No previous tag found, using first commit as base."
@@ -51,22 +65,18 @@ jobs:
           fi
           echo "Previous tag/commit: $PREVIOUS_TAG"
 
-          # Generate changelog content and prepend it
           echo "## $CURRENT_TAG" > new_changelog.md
           ./gct ai log -c $PREVIOUS_TAG $CURRENT_TAG >> new_changelog.md
           echo "" >> new_changelog.md
 
-          # Prepend the new changelog to the existing file
           if [ -f Changelogs.md ]; then
             cat Changelogs.md >> new_changelog.md
           fi
           mv new_changelog.md Changelogs.md
 
-
       - name: Commit Changelog
         run: |
           git add Changelogs.md
-          # Only commit if there are changes
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
@@ -86,6 +96,20 @@ stages:
 generate_changelog:
   stage: changelog
   image: golang:1.22
+  # IMPORTANT: Set these as CI/CD variables in your project's settings.
+  # Settings > CI/CD > Variables > Add variable
+  #
+  # - GCT_PROVIDER: The AI provider to use (e.g. OpenAI, Google AI Studio).
+  # - GCT_MODEL: The specific model name (e.g. gpt-4o, gemini-1.5-flash).
+  # - GCT_API_KEY: Your secret API key. Make sure to set this as 'Masked'.
+  #
+  # You may also need to set provider-specific variables like GCT_AWS_REGION,
+  # GCT_GCP_PROJECT_ID, etc., depending on your chosen provider.
+  variables:
+    GCT_PROVIDER: $GCT_PROVIDER
+    GCT_MODEL: $GCT_MODEL
+    GCT_API_KEY: $GCT_API_KEY
+
   before_script:
     - apt-get update -y && apt-get install -y git
     - git config --global user.name "${GITLAB_USER_NAME:-GitLab CI}"
@@ -104,7 +128,6 @@ generate_changelog:
       fi
       echo "Previous tag/commit: $PREVIOUS_TAG"
 
-      # Generate changelog content and prepend it
       echo "## $CURRENT_TAG" > new_changelog.md
       ./gct ai log -c $PREVIOUS_TAG $CURRENT_TAG >> new_changelog.md
       echo "" >> new_changelog.md
@@ -169,5 +192,5 @@ func SetupCommand() {
 	}
 
 	fmt.Printf("%s Successfully created '%s'.\n", green("✓"), filePath)
-	fmt.Println("Please review the file. You may need to adjust project settings or repository permissions to allow the CI/CD job to commit changes back to the repository.")
+	fmt.Println("Please review the file and set the required environment variables (GCT_PROVIDER, GCT_MODEL, GCT_API_KEY) in your CI/CD provider's settings.")
 }

@@ -1,6 +1,6 @@
 module gct
 
-go 1.24.4
+go 1.24.6
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.36.4
@@ -13,6 +13,11 @@ require (
 	github.com/charmbracelet/lipgloss v1.1.1-0.20250404203927-76690c660834
 	github.com/fatih/color v1.18.0
 	gopkg.in/yaml.v3 v3.0.1
+)
+
+require (
+	github.com/joho/godotenv v1.5.1 // indirect
+	github.com/kelseyhightower/envconfig v1.4.0 // indirect
 )
 
 require (
