@@ -3,8 +3,6 @@ title: Project Configuration
 description: Reference for the gct.yaml configuration file and environment variables.
 ---
 
-# Configuration Reference
-
 GCT offers a flexible configuration system that allows you to set up your AI provider and other settings through files and environment variables.
 
 ## Configuration Hierarchy
